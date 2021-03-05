@@ -1,0 +1,45 @@
+<div class="p-text-center titulo">
+    <h1 class="display-3 ">ALUMNOS</h1>
+</div>
+
+<div class="p-grid">
+    <div class="p-col"  >
+        <div class="p-fluid">
+            <div class="p-field p-grid">
+                <label  for="ambiente" class="p-col-3">Seleccionar ambiente</label>
+                <div class="p-col">
+                    <p-autoComplete id="ambiente" field="name" placeholder="Buscar ambiente..."	[minLength]="3" [dropdown]="true"></p-autoComplete>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</div>
+
+<div class="p-grid">
+    <div class="p-col">
+        <p-table [value]="alumnos">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Foto</th>
+                    <th>DNI</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Nombres</th>
+                    <th>Ambiente</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-alumno>
+                <tr>
+                    <td>{{alumno.nombreImagen}}</td>
+                    <td>{{alumno.documentoIdentidad}}</td>
+                    <td>{{alumno.apellidoPaterno}}</td>
+                    <td>{{alumno.apellidoMaterno}}</td>
+                    <td>{{alumno.nombres}}</td>
+                    <td></td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+

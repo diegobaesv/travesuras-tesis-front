@@ -1,0 +1,13 @@
+.matriculado{
+    background-color: green;
+    color: white;
+}
+
+.sin-matricula{
+    background-color: red;
+    color: white;
+}
+
+.estado-vacio{
+    background-color: white;
+}

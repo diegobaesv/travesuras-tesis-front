@@ -1,0 +1,26 @@
+<div class="p-text-center titulo">
+    <h1 class="display-3 ">AMBIENTES</h1>
+</div>
+
+<div class="p-grid">
+    <div class="p-col">
+        <p-table [value]="ambientes">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>DNI</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Nombres</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-ambiente>
+                <tr>
+                    <td>{{ambiente.documentoIdentidad}}</td>
+                    <td>{{ambiente.apellidoPaterno}}</td>
+                    <td>{{ambiente.apellidoMaterno}}</td>
+                    <td>{{ambiente.nombres}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
