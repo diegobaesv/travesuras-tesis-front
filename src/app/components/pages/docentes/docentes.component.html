@@ -2,9 +2,11 @@
     <h1 class="display-3 ">DOCENTES</h1>
 </div>
 
+
 <div class="p-grid">
     <div class="p-col">
         <p-table [value]="docentes">
+           
             <ng-template pTemplate="header">
                 <tr>
                     <th>Foto</th>
@@ -16,10 +18,10 @@
             </ng-template>
             <ng-template pTemplate="body" let-docente>
                 <tr>
-                    <td>{{docente.nombreImagen}}</td>
-                    <td>{{docente.documentoIdentidad}}</td>
-                    <td>{{docente.apellidoPaterno}}</td>
-                    <td>{{docente.apellidoMaterno}}</td>
+                    <td></td>
+                    <td>{{docente.documento_identidad}}</td>
+                    <td>{{docente.apellido_paterno}}</td>
+                    <td>{{docente.apellido_materno}}</td>
                     <td>{{docente.nombres}}</td>
                 </tr>
             </ng-template>

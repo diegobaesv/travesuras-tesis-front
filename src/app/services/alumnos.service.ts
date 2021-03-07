@@ -15,5 +15,15 @@ export class AlumnosService {
     return this.http.get(`${this.url}/buscar/nombres/${busqueda}`);
   }
 
+  getAlumnos(){
+    return this.http.get(`${this.url}`);
+  }
+
+  getAlumnosByAmbienteId(id_distribucion_ambiente: number){
+    return this.http.get(`${this.url}/ambiente/${id_distribucion_ambiente}`);
+  }
+  
+
+
   
 }

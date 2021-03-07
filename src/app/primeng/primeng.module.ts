@@ -10,6 +10,10 @@ import {InputMaskModule} from 'primeng/inputmask';
 import {CalendarModule} from 'primeng/calendar';
 import {DropdownModule} from 'primeng/dropdown';
 import {TableModule} from 'primeng/table';
+import {InputNumberModule} from 'primeng/inputnumber';
+import {ToastModule} from 'primeng/toast';
+import {CardModule} from 'primeng/card';
+import {PasswordModule} from 'primeng/password';
 
 
 @NgModule({
@@ -24,7 +28,11 @@ import {TableModule} from 'primeng/table';
     InputMaskModule,
     CalendarModule,
     DropdownModule,
-    TableModule
+    TableModule,
+    InputNumberModule,
+    ToastModule,
+    CardModule,
+    PasswordModule
   ],
   exports:  [
     MenuModule,
@@ -35,7 +43,11 @@ import {TableModule} from 'primeng/table';
     InputMaskModule,
     CalendarModule,
     DropdownModule,
-    TableModule
+    TableModule,
+    InputNumberModule,
+    ToastModule,
+    CardModule,
+    PasswordModule
   ]
 })
 export class PrimengModule { }

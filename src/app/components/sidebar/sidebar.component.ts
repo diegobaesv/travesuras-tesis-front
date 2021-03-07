@@ -4,7 +4,7 @@ import { MenuItem } from 'primeng/api';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
 
@@ -15,14 +15,14 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     this.items = [
       {
-        label: '',
+        label: 'General',
         items: [
           { label: 'Matricula', routerLink:'matricula', icon: 'pi pi-fw pi-id-card' },
           { label: 'Pagos', routerLink:'pagos', icon: 'pi pi-fw pi-dollar' }
         ]
       },
       {
-        label: '',
+        label: 'Sistema',
         items: [
           { label: 'Alumnos', routerLink:'alumnos', icon: 'pi pi-fw pi-users' },
           { label: 'Docentes',  routerLink:'docentes',icon: 'pi pi-fw pi-users' },
@@ -31,9 +31,9 @@ export class SidebarComponent implements OnInit {
         ]
       },
       {
-        label: '',
+        label: 'Administrador',
         items: [
-          { label: 'Usuarios', icon: 'pi pi-fw pi-user' }
+          { label: 'Usuarios', routerLink:'usuarios', icon: 'pi pi-fw pi-user' }
         ]
       }
     ];

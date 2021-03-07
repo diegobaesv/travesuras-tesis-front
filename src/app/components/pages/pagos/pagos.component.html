@@ -3,75 +3,63 @@
 </div>
 
 <div class="p-grid">
-    <div class="p-col" >
-        
-        <div class="p-grid"  >
-            <div class="p-col"  >
+    <div class="p-col">
+
+        <div class="p-grid">
+            <div class="p-col">
                 <div class="p-fluid">
                     <div class="p-field p-grid">
-                        <label  for="alumno" class="p-col-3 ">Seleccionar alumno</label>
+                        <label for="alumnoPago" class="p-col-3 ">Seleccionar alumno</label>
                         <div class="p-col ">
-                            <p-autoComplete [(ngModel)]="selectedAlumno" [suggestions]="alumnos_autocompleteResult"
-                                (completeMethod)="searchAlumno($event)" id="alumno" placeholder="Buscar alumno..." field="nombre_completo"
-                                [minLength]="1" (onSelect)="onSelectAlumno($event)" [ngClass]="{'ng-invalid ng-dirty': errorAlumno}">
+                            <p-autoComplete [(ngModel)]="selectedAlumno" [suggestions]="alumnos_autocompleteResult" 
+                                (completeMethod)="searchAlumno($event)" id="alumnoPago" placeholder="Buscar alumno..."
+                                field="nombre_completo" [minLength]="1" (onSelect)="onSelectAlumno($event)"
+                                [ngClass]="{'ng-invalid ng-dirty': errorAlumno}">
                                 <ng-template let-alumno pTemplate="dataItem">
-                                    {{alumno.nombres}} {{alumno.apellido_paterno}} {{alumno.apellido_materno}} ({{alumno.documento_identidad}})
-                                 </ng-template>
-                               
+                                    {{alumno.nombres}} {{alumno.apellido_paterno}} {{alumno.apellido_materno}}
+                                    ({{alumno.documento_identidad}})
+                                </ng-template>
+
                             </p-autoComplete>
                         </div>
                     </div>
                 </div>
-               
+
             </div>
-            <div class="p-col-6 " >
-               
-                  
-                
+            <div class="p-col-6 ">
+                <div class="p-fluid">
+                    <div class="p-field p-grid">
+                        <label for="apoderado" class="p-col-3">Apoderado</label>
+                        <div class="p-col">
+                            <input id="apoderado" type="text" pInputText [(ngModel)]="selectedApoderadoNombreCompleto"
+                                [disabled]="true">
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
 
         <div class="p-grid">
-            <div class="p-col-6" >
-                <div class="p-fluid">
-                    <div class="p-field p-grid">
-                        <label  for="apoderado" class="p-col-3">Apoderado</label>
-                        <div class="p-col">
-                            <input id="apoderado" type="text" pInputText [(ngModel)]="selectedApoderadoNombreCompleto" [disabled]="true" >
-                        </div>
-                    </div>
-                </div>
-            </div>  
-            <div class="p-col-3">
-                <div class="p-fluid">
-                    <div class="p-field p-grid">
-                        <label  for="deuda" class="p-col">Deuda actual</label>
-                        <div class="p-col">
-                            <input id="deuda" type="text" pInputText [(ngModel)]="deuda" [disabled]="true" >
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        
-        <div class="p-grid">
-            <div class="p-col-6" >
-                <div class="p-fluid">
-                    <div class="p-field p-grid">
-                        <label  for="monto" class="p-col-3">Monto</label>
-                        <div class="p-col">
-                            <input id="monto" type="text" pInputText >
-                        </div>
-                    </div>
-                </div>
-            </div> 
             <div class="p-col-6">
                 <div class="p-fluid">
                     <div class="p-field p-grid">
-                        <label  for="deuda" class="p-col-3">Concepto</label>
+                        <label for="currency-peru" class="p-col-3">Monto</label>
                         <div class="p-col">
-                            <p-dropdown [options]="conceptos" optionLabel="name"></p-dropdown>
+                            <p-inputNumber [(ngModel)]="selectedMonto" mode="currency" inputId="currency-peru" currency="PEN"
+                                currencyDisplay="code"  [ngClass]="{'ng-invalid ng-dirty': errorMonto}" >
+                            </p-inputNumber>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-col-6">
+                <div class="p-fluid">
+                    <div class="p-field p-grid">
+                        <label for="deuda" class="p-col-3">Concepto</label>
+                        <div class="p-col">
+                            <p-dropdown [options]="conceptos" optionLabel="nombre" optionValue="codigo" (onChange)="onSelectConcepto($event.value)"></p-dropdown>
 
                         </div>
                     </div>
@@ -79,22 +67,22 @@
             </div>
         </div>
         <div class="p-grid">
-            <div class="p-col-6" >
+            <div class="p-col-6">
                 <div class="p-fluid">
                     <div class="p-field p-grid">
-                        <label  for="fecha_p" class="p-col-3">Fecha Pago</label>
+                        <label for="fecha_p" class="p-col-3">Fecha Pago</label>
                         <div class="p-col">
-                            <p-calendar id="fecha_p"></p-calendar>
+                            <p-calendar id="fecha_p" [(ngModel)]="selectedFechaPago"  [ngClass]="{'ng-invalid ng-dirty': errorFechaPago}"></p-calendar>
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div class="p-col-6">
                 <div class="p-fluid">
                     <div class="p-field p-grid">
                         <label class="p-col-3">Metodo</label>
                         <div class="p-col">
-                            <p-dropdown [options]="metodos" optionLabel="name"></p-dropdown>
+                            <p-dropdown [options]="metodos" optionLabel="nombre" optionValue="codigo" (onChange)="onSelectMetodo($event.value)"></p-dropdown>
 
                         </div>
                     </div>
@@ -102,21 +90,57 @@
             </div>
         </div>
 
-     
+
+
+
         <div class="p-grid">
-            <div class="p-col" >
-               <div class="p-grid">
+            <div class="p-col">
+                <div class="p-grid">
                     <div class="p-col-2">
-                        <p-button styleClass="p-button-lg" label="Guardar" class="p-button-primary"></p-button>
+                        <p-button styleClass="p-button-lg" label="Guardar" class="p-button-primary" (onClick)="guardarPago()"></p-button>
                     </div>
                     <div class="p-col-2">
-                        <p-button styleClass="p-button-lg" label="Cancelar" class="p-button-secondary"></p-button>
+                        <p-button styleClass="p-button-lg" label="Cancelar" class="p-button-secondary" (onClick)="reloadComponent()"></p-button>
                     </div>
-               </div>
-            </div>  
-           
+                </div>
+            </div>
+
         </div>
+
+
+        <div class="p-grid">
+            <div class="p-col">
+
+                <p-table [value]="pagosDeAlumno">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Metodo</th>
+                            <th>Concepto</th>
+                            <th>Monto Pagado</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-pago>
+                        <tr>
+                            <td>{{pago.metodo}}</td>
+                            <td>{{pago.concepto}}</td>
+                            <td>S/.{{pago.monto}}</td>
+                            <td>
+                                <div *ngIf="pago.usuario">
+                                    {{pago.usuario.username}}
+                                </div>
+                                
+                            </td>
+                            <td>{{pago.fecha_pago}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+            </div>
+        </div>
+
     </div>
 
-    
+
 </div>

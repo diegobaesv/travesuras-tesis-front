@@ -1,8 +1,11 @@
 
 .sidebar{
     height: 100vh;
-    background-color:#121e40;
-    padding: 4px;
+    background-color:#061a33;
+    padding-left: 5px;
+    padding-right : 0px;
+    padding-top : 5px;
+    width: 160px;
 }
 
 .menubar{
@@ -12,4 +15,9 @@
 
 .router{
     padding: 2%;
+}
+
+.fondo{
+    
+  background:  linear-gradient(rgba(255,255,255,.97), rgba(255,255,255,.97)), url("https://img.deszone.net/2019/04/school-vector-free-seamless-pattern2.jpg");
 }

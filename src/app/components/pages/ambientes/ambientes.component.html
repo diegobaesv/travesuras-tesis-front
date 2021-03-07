@@ -4,21 +4,22 @@
 
 <div class="p-grid">
     <div class="p-col">
-        <p-table [value]="ambientes">
+        <p-table [value]="ambientes" >
+           
             <ng-template pTemplate="header">
                 <tr>
-                    <th>DNI</th>
-                    <th>Apellido Paterno</th>
-                    <th>Apellido Materno</th>
-                    <th>Nombres</th>
+                    <th>Aula</th>
+                    <th>Nivel</th>
+                    <th>Año</th>
+                    <th>Docente</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-ambiente>
                 <tr>
-                    <td>{{ambiente.documentoIdentidad}}</td>
-                    <td>{{ambiente.apellidoPaterno}}</td>
-                    <td>{{ambiente.apellidoMaterno}}</td>
-                    <td>{{ambiente.nombres}}</td>
+                    <td>{{ambiente.aula.nombre}}</td>
+                    <td>{{ambiente.nivel.nombre}}</td>
+                    <td>{{ambiente.anio}}</td>
+                    <td>{{ambiente.docente.nombres}} {{ambiente.docente.apellido_paterno}} {{ambiente.docente.apellido_materno}}</td>
                 </tr>
             </ng-template>
         </p-table>

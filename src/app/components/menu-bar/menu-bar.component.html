@@ -1,1 +1,11 @@
-<p-menubar [model]="items"></p-menubar>
+<p-menubar [model]="items">
+    <ng-template pTemplate="start">
+        <img class="logo-uns" src="https://images.vexels.com/media/users/3/152802/isolated/lists/4a12178b4182569cfb402bd969ff4965-icono-de-edificio-de-escuela-clasica.png" height="50" routerLink="principal" >
+    </ng-template>
+
+    <ng-template pTemplate="end">
+        <img src="https://cdn.pixabay.com/photo/2012/04/13/21/07/user-33638_960_720.png" height="40" class="fotoAdmin">
+        <div class="admin">{{usuarioName}}</div>
+        <button (click)="cerrarSesion()" pButton pRipple icon="pi pi-sign-out" class="btnAdmin p-button-sm p-button-rounded p-button-danger"></button>
+    </ng-template>
+</p-menubar>

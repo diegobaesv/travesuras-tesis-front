@@ -19,7 +19,6 @@ export class MatriculaService {
       fecha_matricula: fecha_matricula,
       id_usuario:id_usuario
      };
-     console.log(body)
     return this.http.post(`${this.url}`, body, {
       headers: {
         'content-type': "application/json"

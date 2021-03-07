@@ -4,6 +4,8 @@ import { Ambiente } from 'src/app/models/ambiente';
 import { AlumnosService } from 'src/app/services/alumnos.service';
 import { AmbientesService } from 'src/app/services/ambientes.service';
 import { MatriculaService } from 'src/app/services/matricula.service';
+import { ReloadService } from 'src/app/services/reload.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-matricula',
@@ -31,12 +33,12 @@ export class MatriculaComponent implements OnInit {
   errorAmbiente: boolean = false;
   errorFechaMatricula: boolean = false;
 
-  constructor(private alumnosServices: AlumnosService, private ambientesService: AmbientesService, private matriculaService: MatriculaService) {
+  constructor(private reloadService: ReloadService,private alumnosServices: AlumnosService, private ambientesService: AmbientesService, private matriculaService: MatriculaService, private toastService: ToastService) {
   }
 
   ngOnInit(): void {
     this.cargarAmbientes();
-
+    
   }
 
   searchAlumno(event: any) {
@@ -49,8 +51,15 @@ export class MatriculaComponent implements OnInit {
 
   cargarAmbientes() {
     this.ambientesService.getAmbientes().subscribe((data: any) => {
-      this.ambientes = data['data'];
-    });
+      if(data){
+        this.ambientes = data['data'];
+        this.toastService.mensajeCorrecto('Ambientes cargados con exito');
+      }
+      
+    },err=>{
+      this.toastService.mensajeIncorrecto('No se pudo conectar a la BD');
+    }
+    );
   }
 
 
@@ -62,18 +71,18 @@ export class MatriculaComponent implements OnInit {
 
   onSelectAlumno(alumno: Alumno){
     this.buscarEstadoMatriculaAlumno(alumno.id_alumno);
+
   }
 
   buscarEstadoMatriculaAlumno(id_alumno: number){
     this.matriculaService.buscarEstadoMatriculaAlumno(id_alumno).subscribe((data: any)=>{
       this.selectedEstadoMatricula = data['estado']
       this.selectedEstadoMatriculaTexto = this.selectedEstadoMatricula  ? 'MATRICULADO': 'SIN MATRICULAR'
-
-      console.log(data['estado'])
+    
     })
   }
 
-  matricular(event: any) {
+  matricular() {
     this.variablesErrorTo(false);
 
     if (!this.selectedAlumno) {
@@ -87,7 +96,11 @@ export class MatriculaComponent implements OnInit {
     }
     if(this.selectedAlumno && this.selectedAmbiente && this.selectedFecha){
       this.matriculaService.matricularAlumno(this.selectedAlumno.id_alumno,this.selectedAmbiente.id_distribucion_ambiente, this.selectedFecha,1).subscribe(data=>{
-        console.log(data)
+        if(data){
+          this.toastService.mensajeCorrecto('Se matriculó al alumno de manera correcta');
+        }
+      }, err=>{
+        this.toastService.mensajeIncorrecto('Ocurrio un error al matricular el Alumno');
       });
     }
   }
@@ -98,6 +111,9 @@ export class MatriculaComponent implements OnInit {
     this.errorFechaMatricula = val;
   }
 
+  reloadComponent() {
+    this.reloadService.reloadComponent('/matricula');
+  }
 
 
 }

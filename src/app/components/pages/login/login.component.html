@@ -1,1 +1,35 @@
-<p>login works!</p>
+<div class="padre">
+
+    <div class="hijo p-shadow-24">
+        <p-card class="p-card-shadow">
+        <div class="p-text-center titulo">
+            <h1 class="display-3 ">I.E.P. TRAVESURAS</h1>
+            <h1 class="display-6 ">LOGIN</h1>
+            <br>
+        </div>
+
+         
+                <div class="p-fluid credenciales" >
+                    <div class="p-field">
+                        <label for="username">Usuario</label>
+                        <input id="username" type="text" [(ngModel)]="username" pInputText>
+                    </div>
+                    <div class="p-field">
+                        <label for="clave">Clave</label>
+                        <input type="password" [feedback]="false" [(ngModel)]="clave" pPassword />
+                    </div>
+                </div>
+                <ng-template pTemplate="footer ">
+                    <div class="credenciales p-text-center">
+
+                    
+                    <p-button label="Ingresar" (click)="login()"></p-button>
+                    <p-button label="Cancelar" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"
+                        (click)="reloadComponent()"></p-button>
+                    </div>
+                </ng-template>
+
+
+    </p-card>
+    </div>
+</div>

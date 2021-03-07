@@ -1,0 +1,25 @@
+::ng-deep{
+    .p-menu{
+        background-color: transparent;
+        border: transparent;
+        color: white;
+        padding: 0px;
+        width: auto;
+
+        .p-submenu-header{
+            background-color: transparent;
+            color: white;
+        }
+
+        .p-menuitem-link{
+            
+            .p-menuitem-text{
+                color: white
+            }
+            .p-menuitem-icon{
+                color: white
+            }
+        }
+    }
+
+}

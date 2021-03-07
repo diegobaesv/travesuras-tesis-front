@@ -10,10 +10,10 @@
                     <div class="p-field p-grid">
                         <label for="alumno" class="p-col-3 ">Seleccionar alumno</label>
                         <div class="p-col ">
-                            <p-autoComplete [(ngModel)]="selectedAlumno" [suggestions]="alumnos_autocompleteResult"
+                            <p-autoComplete [(ngModel)]="selectedAlumno" [suggestions]="alumnos_autocompleteResult" (onClear)="reloadComponent()"
                                 (completeMethod)="searchAlumno($event)" id="alumno" placeholder="Buscar alumno..." field="nombre_completo"
                                 [minLength]="1" (onSelect)="onSelectAlumno($event)" [ngClass]="{'ng-invalid ng-dirty': errorAlumno}">
-                                <ng-template let-alumno pTemplate="dataItem">
+                                <ng-template let-alumno pTemplate="dataItem" >
                                     {{alumno.nombres}} {{alumno.apellido_paterno}} {{alumno.apellido_materno}} ({{alumno.documento_identidad}})
                                  </ng-template>
                                
@@ -48,7 +48,7 @@
                         <div class="p-col">
                             
                             <p-dropdown id="ambienteId" [options]="ambientes" [(ngModel)]="selectedAmbiente" optionLabel="anio" (onChange)="onChangeAmbientes($event.value)"
-                            placeholder="Elegir ambiente para matricular" [ngClass]="{'ng-invalid ng-dirty': errorAmbiente}" >
+                            placeholder="Elegir ambiente para matricular" [ngClass]="{'ng-invalid ng-dirty': errorAmbiente}" [disabled]="selectedEstadoMatricula">
                                 <ng-template pTemplate="selectedItem">
                                     <div *ngIf="selectedAmbiente" >
                                         {{selectedAmbiente.nivel.nombre}} - {{selectedAmbiente.aula.nombre}} ({{selectedAmbiente.anio}})
@@ -56,7 +56,7 @@
                                 </ng-template>
 
                                 <ng-template let-ambiente pTemplate="item" >
-                                     {{ambiente.nivel.nombre}} - {{ambiente.aula.nombre}} ({{ambiente.anio}})
+                                     {{ambiente.nivel.nombre}} - {{ambiente.aula.nombre}} ({{ambiente.anio}}) 
                                 </ng-template>
                             </p-dropdown>
 
@@ -93,30 +93,27 @@
             <div class="p-col-4"></div>
         </div>
         <div class="p-grid">
-            <div class="p-col">
+            <div class="p-col-8">
                 <div class="p-fluid">
                     <div class="p-field p-grid">
                         <label for="fecha_m" class="p-col-3">Fecha matrícula</label>
-                        <div class="p-col-4">
-                            <p-calendar id="fecha_m"  [(ngModel)]="selectedFecha" [ngClass]="{'ng-invalid ng-dirty': errorFechaMatricula}"></p-calendar>
+                        <div class="p-col-9">
+                            <p-calendar id="fecha_m"  [(ngModel)]="selectedFecha" [ngClass]="{'ng-invalid ng-dirty': errorFechaMatricula}"  [disabled]="selectedEstadoMatricula"></p-calendar>
 
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="p-col-2">
-                <p-button label="Agregar Pago"></p-button>
-            </div>
-            <div class="p-col-2"></div>
+            
         </div>
         <div class="p-grid">
             <div class="p-col">
                 <div class="p-grid">
                     <div class="p-col-2">
-                        <p-button styleClass="p-button-lg" label="Matricular" class="p-button-primary" (onClick)="matricular($event)"></p-button>
+                        <p-button styleClass="p-button-lg" label="Matricular" class="p-button-primary" (onClick)="matricular()"  [disabled]="selectedEstadoMatricula"></p-button>
                     </div>
                     <div class="p-col-2">
-                        <p-button styleClass="p-button-lg" label="Cancelar" class="p-button-secondary"></p-button>
+                        <p-button styleClass="p-button-lg" label="Cancelar" class="p-button-secondary" (onClick)="reloadComponent()"></p-button>
                     </div>
                 </div>
             </div>
@@ -125,6 +122,14 @@
     </div>
 
     <div class="p-col-3">
-        <img src="https://1080motion.com/wp-content/uploads/2018/06/NoImageFound.jpg.png" class="img-fluid">
+        <div *ngIf="selectedAlumno">
+            <img [src]="selectedAlumno.host_imagen ?  selectedAlumno.host_imagen :'https://www.uaa.mx/portal/wp-content/themes/UAAV1/images/autor-nofoto.jpg'" class="img-fluid avatar">
+        </div>
+        <div *ngIf="!selectedAlumno">
+            <img src="https://www.uaa.mx/portal/wp-content/themes/UAAV1/images/autor-nofoto.jpg" class="img-fluid avatar">
+        </div>
+        
+
+        
     </div>
 </div>

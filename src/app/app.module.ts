@@ -20,6 +20,9 @@ import { PrimengModule } from './primeng/primeng.module';
 import { DocentesComponent } from './components/pages/docentes/docentes.component';
 import { ApoderadosComponent } from './components/pages/apoderados/apoderados.component';
 import { AmbientesComponent } from './components/pages/ambientes/ambientes.component';
+import { MessageService } from 'primeng/api';
+import { ConstruccionComponent } from './components/pages/construccion/construccion.component';
+import { UsuariosComponent } from './components/pages/usuarios/usuarios.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import { AmbientesComponent } from './components/pages/ambientes/ambientes.compo
     LoginComponent,
     DocentesComponent,
     ApoderadosComponent,
-    AmbientesComponent
+    AmbientesComponent,
+    ConstruccionComponent,
+    UsuariosComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,7 @@ import { AmbientesComponent } from './components/pages/ambientes/ambientes.compo
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
