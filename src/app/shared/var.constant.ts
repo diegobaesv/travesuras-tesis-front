@@ -1,1 +1,1 @@
-export const HOST_BACKEND = 'http://localhost:3000/api'
+export const HOST_BACKEND = 'https://travesurasback.herokuapp.com/api'
